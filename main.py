@@ -2,11 +2,71 @@ import os
 import sys
 from network import P2PNetwork
 import run_tests
+import networkx as nx
+import matplotlib.pyplot as plt
 
 def print_banner():
     print("=" * 60)
     print("       SIMULADOR DE BUSCA EM REDES P2P NÃO ESTRUTURADAS       ")
     print("=" * 60)
+
+def draw_network(net, title="Topologia da Rede"):
+    """
+    Desenha a rede carregada utilizando NetworkX.
+    """
+
+    G = nx.Graph()
+
+    # Nós
+    for node_id in net.nodes:
+        G.add_node(node_id)
+
+    # Arestas
+    for node_id, node in net.nodes.items():
+        for neighbor in node.neighbors:
+            G.add_edge(node_id, neighbor)
+
+    plt.figure(figsize=(12, 8))
+
+    pos = nx.spring_layout(
+        G,
+        seed=42,
+        k=1.5
+    )
+
+    labels = {}
+
+    for node_id, node in net.nodes.items():
+        resources = ", ".join(node.resources)
+
+        if resources:
+            labels[node_id] = f"{node_id}\n{resources}"
+        else:
+            labels[node_id] = node_id
+
+    nx.draw_networkx_nodes(
+        G,
+        pos,
+        node_size=2500
+    )
+
+    nx.draw_networkx_edges(
+        G,
+        pos,
+        width=2
+    )
+
+    nx.draw_networkx_labels(
+        G,
+        pos,
+        labels,
+        font_size=8
+    )
+
+    plt.title(title)
+    plt.axis("off")
+    plt.tight_layout()
+    plt.show()
 
 def show_network_info(net):
     print(f"\n[+] Rede Carregada e Validada com Sucesso!")
@@ -96,7 +156,14 @@ def run_individual_search(net):
             
         print(f"  - Mensagens Trocadas: {res['messages']}")
         print(f"  - Nós Envolvidos: {res['nodes_involved']}")
-        print("=" * 40)
+        if "steps" in res:
+
+            print("\n--- Rastreamento Completo da Busca ---")
+
+            for i, step in enumerate(res["steps"], start=1):
+                print(f"{i:02d}. {step}")
+
+                print("=" * 40)
         
         # Display cache updates
         if res["found"] and len(res["path"]) > 1:
@@ -140,6 +207,11 @@ def load_and_validate_network():
         try:
             net.load_config(filename)
             net.validate()
+            draw_network(
+            net,
+            f"Rede carregada: {os.path.basename(filename)}"
+            )
+
             return net
         except Exception as e:
             print(f"\n[!] A REDE É INVÁLIDA! Falha na Validação:")

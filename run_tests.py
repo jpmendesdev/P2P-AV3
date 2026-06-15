@@ -1,6 +1,7 @@
 import os
 import random
 from network import P2PNetwork
+import matplotlib.pyplot as plt
 
 def clear_caches(net):
     for node in net.nodes.values():
@@ -85,6 +86,126 @@ def run_experiment(topology_file, start_node, resource_id, ttl, runs=20):
         
     return results
 
+def generate_graphs(all_results):
+    os.makedirs("graphs", exist_ok=True)
+
+    for (topology, resource), results in all_results.items():
+
+        algorithms = list(results.keys())
+
+        cold_msgs = [results[a]["cold"]["msg"] for a in algorithms]
+        hot_msgs = [results[a]["hot"]["msg"] for a in algorithms]
+
+        cold_nodes = [results[a]["cold"]["nodes"] for a in algorithms]
+        hot_nodes = [results[a]["hot"]["nodes"] for a in algorithms]
+
+        cold_rate = [results[a]["cold"]["rate"] * 100 for a in algorithms]
+        hot_rate = [results[a]["hot"]["rate"] * 100 for a in algorithms]
+
+        topo_safe = topology.replace(" ", "_").replace("(", "").replace(")", "")
+        resource_safe = resource.replace(" ", "_")
+
+        x = range(len(algorithms))
+
+        # =====================================================
+        # GRÁFICO 1 - MENSAGENS
+        # =====================================================
+
+        plt.figure(figsize=(10, 5))
+
+        plt.bar(
+            [i - 0.2 for i in x],
+            cold_msgs,
+            width=0.4,
+            label="Cache Frio"
+        )
+
+        plt.bar(
+            [i + 0.2 for i in x],
+            hot_msgs,
+            width=0.4,
+            label="Cache Quente"
+        )
+
+        plt.xticks(x, algorithms, rotation=15)
+        plt.ylabel("Mensagens")
+        plt.title(f"{topology} - {resource}")
+        plt.legend()
+        plt.tight_layout()
+
+        plt.savefig(
+            f"graphs/{topo_safe}_{resource_safe}_messages.png"
+        )
+
+        plt.close()
+
+        # =====================================================
+        # GRÁFICO 2 - NÓS ENVOLVIDOS
+        # =====================================================
+
+        plt.figure(figsize=(10, 5))
+
+        plt.bar(
+            [i - 0.2 for i in x],
+            cold_nodes,
+            width=0.4,
+            label="Cache Frio"
+        )
+
+        plt.bar(
+            [i + 0.2 for i in x],
+            hot_nodes,
+            width=0.4,
+            label="Cache Quente"
+        )
+
+        plt.xticks(x, algorithms, rotation=15)
+        plt.ylabel("Nós envolvidos")
+        plt.title(f"{topology} - {resource}")
+        plt.legend()
+        plt.tight_layout()
+
+        plt.savefig(
+            f"graphs/{topo_safe}_{resource_safe}_nodes.png"
+        )
+
+        plt.close()
+
+        # =====================================================
+        # GRÁFICO 3 - TAXA DE SUCESSO
+        # =====================================================
+
+        plt.figure(figsize=(10, 5))
+
+        plt.bar(
+            [i - 0.2 for i in x],
+            cold_rate,
+            width=0.4,
+            label="Cache Frio"
+        )
+
+        plt.bar(
+            [i + 0.2 for i in x],
+            hot_rate,
+            width=0.4,
+            label="Cache Quente"
+        )
+
+        plt.xticks(x, algorithms, rotation=15)
+        plt.ylabel("Sucesso (%)")
+        plt.ylim(0, 100)
+        plt.title(f"{topology} - {resource}")
+        plt.legend()
+        plt.tight_layout()
+
+        plt.savefig(
+            f"graphs/{topo_safe}_{resource_safe}_success.png"
+        )
+
+        plt.close()
+
+    print("\nGráficos salvos na pasta 'graphs/'")
+
 def main():
     topologies = {
         "Ring (Anel)": "topologies/topo_ring.yaml",
@@ -100,6 +221,7 @@ def main():
     ]
     
     start_node = "n1"
+    all_results = {}
     
     markdown_report = "# Resultados dos Testes Comparativos\n\n"
     markdown_report += "Este relatório apresenta a comparação entre os algoritmos de busca nas diferentes topologias, considerando o estado do **Cache Frio** (busca sem histórico) e **Cache Quente** (busca após o recurso ter sido localizado e o caminho cacheado).\n\n"
@@ -117,6 +239,7 @@ def main():
             markdown_report += "| --- | --- | --- | --- | --- | --- | --- |\n"
             
             results = run_experiment(topo_file, start_node, res_id, ttl)
+            all_results[(topo_name, res_id)] = results
             
             for algo, data in results.items():
                 cold = data["cold"]
@@ -142,6 +265,7 @@ def main():
     with open("results_comparison.md", "w", encoding="utf-8") as f:
         f.write(markdown_report)
     print("Relatório salvo em results_comparison.md")
+    generate_graphs(all_results)
 
 if __name__ == "__main__":
     # Seed random for reproducibility

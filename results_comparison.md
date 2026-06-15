@@ -8,19 +8,19 @@ Este relatório apresenta a comparação entre os algoritmos de busca nas difere
 
 | Algoritmo | Cache Frio: Msg (Méd.) | Cache Frio: Nós (Méd.) | Cache Frio: Sucesso % | Cache Quente: Msg (Méd.) | Cache Quente: Nós (Méd.) | Cache Quente: Sucesso % |
 | --- | --- | --- | --- | --- | --- | --- |
-| `flooding` | 13 | 9 | 100% | 13 | 9 | 100% |
-| `informed_flooding` | 13 | 9 | 100% | 8 | 5 | 100% |
-| `random_walk` | 11.3 | 6.7 | 100% | 12.2 | 7.1 | 100% |
-| `informed_random_walk` | 11.6 | 6.8 | 100% | 8 | 5 | 100% |
+| `flooding` | 12 | 8 | 100% | 12 | 8 | 100% |
+| `informed_flooding` | 12 | 8 | 100% | 12 | 8 | 100% |
+| `random_walk` | 10.7 | 6.3 | 100% | 11 | 6.5 | 100% |
+| `informed_random_walk` | 10.1 | 6.0 | 100% | 11.6 | 6.8 | 100% |
 
 ### Busca por `r12` (Recurso n°12 (Existente, Distante)) a partir de `n1` com TTL=10
 
 | Algoritmo | Cache Frio: Msg (Méd.) | Cache Frio: Nós (Méd.) | Cache Frio: Sucesso % | Cache Quente: Msg (Méd.) | Cache Quente: Nós (Méd.) | Cache Quente: Sucesso % |
 | --- | --- | --- | --- | --- | --- | --- |
-| `flooding` | 3 | 2 | 100% | 3 | 2 | 100% |
-| `informed_flooding` | 3 | 2 | 100% | 2 | 2 | 100% |
-| `random_walk` | 12.8 | 7.4 | 100% | 11 | 6.5 | 100% |
-| `informed_random_walk` | 11.9 | 7.0 | 100% | 2 | 2 | 100% |
+| `flooding` | 4 | 3 | 100% | 4 | 3 | 100% |
+| `informed_flooding` | 4 | 3 | 100% | 4 | 3 | 100% |
+| `random_walk` | 11 | 6.5 | 100% | 8.3 | 5.2 | 100% |
+| `informed_random_walk` | 11 | 6.5 | 100% | 7.4 | 4.7 | 100% |
 
 ### Busca por `r99` (Recurso Inexistente (Insucesso)) a partir de `n1` com TTL=5
 
@@ -28,8 +28,8 @@ Este relatório apresenta a comparação entre os algoritmos de busca nas difere
 | --- | --- | --- | --- | --- | --- | --- |
 | `flooding` | 10 | 11 | 0% | 10 | 11 | 0% |
 | `informed_flooding` | 10 | 11 | 0% | 10 | 11 | 0% |
-| `random_walk` | 5 | 6 | 0% | 5 | 6 | 0% |
-| `informed_random_walk` | 5 | 6 | 0% | 5 | 6 | 0% |
+| `random_walk` | 6 | 7 | 0% | 6 | 7 | 0% |
+| `informed_random_walk` | 6 | 7 | 0% | 6 | 7 | 0% |
 
 ## Topologia: Mesh (Malha)
 
@@ -37,19 +37,19 @@ Este relatório apresenta a comparação entre os algoritmos de busca nas difere
 
 | Algoritmo | Cache Frio: Msg (Méd.) | Cache Frio: Nós (Méd.) | Cache Frio: Sucesso % | Cache Quente: Msg (Méd.) | Cache Quente: Nós (Méd.) | Cache Quente: Sucesso % |
 | --- | --- | --- | --- | --- | --- | --- |
-| `flooding` | 10 | 5 | 100% | 10 | 5 | 100% |
-| `informed_flooding` | 10 | 5 | 100% | 4 | 3 | 100% |
-| `random_walk` | 7.5 | 4.8 | 95% | 6.5 | 4.3 | 95% |
-| `informed_random_walk` | 8.2 | 5.5 | 80% | 4 | 3 | 100% |
+| `flooding` | 8 | 4 | 100% | 8 | 4 | 100% |
+| `informed_flooding` | 8 | 4 | 100% | 8 | 4 | 100% |
+| `random_walk` | 10.1 | 6.0 | 90% | 9.6 | 5.6 | 95% |
+| `informed_random_walk` | 8.6 | 5.5 | 80% | 6.7 | 4.6 | 85% |
 
 ### Busca por `r12` (Recurso n°12 (Existente, Distante)) a partir de `n1` com TTL=10
 
 | Algoritmo | Cache Frio: Msg (Méd.) | Cache Frio: Nós (Méd.) | Cache Frio: Sucesso % | Cache Quente: Msg (Méd.) | Cache Quente: Nós (Méd.) | Cache Quente: Sucesso % |
 | --- | --- | --- | --- | --- | --- | --- |
 | `flooding` | 27 | 12 | 100% | 27 | 12 | 100% |
-| `informed_flooding` | 27 | 12 | 100% | 10 | 6 | 100% |
-| `random_walk` | 10.8 | 7.6 | 35% | 11 | 7.7 | 30% |
-| `informed_random_walk` | 11.2 | 6.7 | 50% | 10 | 6 | 100% |
+| `informed_flooding` | 27 | 12 | 100% | 27 | 12 | 100% |
+| `random_walk` | 13.1 | 7.5 | 70% | 12.8 | 7.8 | 55% |
+| `informed_random_walk` | 12.4 | 7.8 | 55% | 12.1 | 7.6 | 55% |
 
 ### Busca por `r99` (Recurso Inexistente (Insucesso)) a partir de `n1` com TTL=5
 
@@ -57,8 +57,8 @@ Este relatório apresenta a comparação entre os algoritmos de busca nas difere
 | --- | --- | --- | --- | --- | --- | --- |
 | `flooding` | 22 | 12 | 0% | 22 | 12 | 0% |
 | `informed_flooding` | 22 | 12 | 0% | 22 | 12 | 0% |
-| `random_walk` | 5 | 5.7 | 0% | 5 | 5.9 | 0% |
-| `informed_random_walk` | 5 | 5.9 | 0% | 5 | 5.9 | 0% |
+| `random_walk` | 6 | 6.5 | 0% | 6 | 6.5 | 0% |
+| `informed_random_walk` | 6 | 6.2 | 0% | 6 | 6.4 | 0% |
 
 ## Topologia: Scale-Free (Hierárquica)
 
@@ -66,19 +66,19 @@ Este relatório apresenta a comparação entre os algoritmos de busca nas difere
 
 | Algoritmo | Cache Frio: Msg (Méd.) | Cache Frio: Nós (Méd.) | Cache Frio: Sucesso % | Cache Quente: Msg (Méd.) | Cache Quente: Nós (Méd.) | Cache Quente: Sucesso % |
 | --- | --- | --- | --- | --- | --- | --- |
-| `flooding` | 11 | 5 | 100% | 11 | 5 | 100% |
-| `informed_flooding` | 11 | 5 | 100% | 2 | 2 | 100% |
-| `random_walk` | 10.7 | 6.7 | 60% | 6.9 | 4.8 | 70% |
-| `informed_random_walk` | 9.4 | 6.8 | 60% | 2 | 2 | 100% |
+| `flooding` | 7 | 3 | 100% | 7 | 3 | 100% |
+| `informed_flooding` | 7 | 3 | 100% | 7 | 3 | 100% |
+| `random_walk` | 10.1 | 7.0 | 45% | 9.1 | 6.4 | 55% |
+| `informed_random_walk` | 6.9 | 4.8 | 70% | 7.8 | 6.0 | 65% |
 
 ### Busca por `r12` (Recurso n°12 (Existente, Distante)) a partir de `n1` com TTL=10
 
 | Algoritmo | Cache Frio: Msg (Méd.) | Cache Frio: Nós (Méd.) | Cache Frio: Sucesso % | Cache Quente: Msg (Méd.) | Cache Quente: Nós (Méd.) | Cache Quente: Sucesso % |
 | --- | --- | --- | --- | --- | --- | --- |
 | `flooding` | 25 | 12 | 100% | 25 | 12 | 100% |
-| `informed_flooding` | 25 | 12 | 100% | 6 | 4 | 100% |
-| `random_walk` | 10.7 | 6.9 | 60% | 10.1 | 6.8 | 55% |
-| `informed_random_walk` | 12.1 | 7.0 | 55% | 6 | 4 | 100% |
+| `informed_flooding` | 25 | 12 | 100% | 25 | 12 | 100% |
+| `random_walk` | 11.3 | 7.0 | 55% | 11.2 | 7.1 | 55% |
+| `informed_random_walk` | 12.2 | 7.5 | 55% | 10.3 | 6 | 70% |
 
 ### Busca por `r99` (Recurso Inexistente (Insucesso)) a partir de `n1` com TTL=5
 
@@ -86,6 +86,6 @@ Este relatório apresenta a comparação entre os algoritmos de busca nas difere
 | --- | --- | --- | --- | --- | --- | --- |
 | `flooding` | 23 | 12 | 0% | 23 | 12 | 0% |
 | `informed_flooding` | 23 | 12 | 0% | 23 | 12 | 0% |
-| `random_walk` | 5 | 5.4 | 0% | 5 | 5.7 | 0% |
-| `informed_random_walk` | 5 | 5.7 | 0% | 5 | 5.3 | 0% |
+| `random_walk` | 6 | 6.1 | 0% | 6 | 6.2 | 0% |
+| `informed_random_walk` | 6 | 6.5 | 0% | 6 | 6.2 | 0% |
 
