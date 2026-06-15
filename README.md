@@ -7,14 +7,30 @@ Professor: Nabor C. Mendonça
 
 # Integrantes
 
-| Nome | Matrícula |
-|--------|--------|
-| __________________________________ | ______________ |
-| __________________________________ | ______________ |
-| __________________________________ | ______________ |
-| __________________________________ | ______________ |
+<h2>Integrantes</h2>
 
----
+<table>
+    <tr>
+        <th>Integrante</th>
+        <th>Matrícula</th>
+    </tr>
+    <tr>
+        <td>João Pedro Mendes</td>
+        <td>2315069</td>
+    </tr>
+    <tr>
+        <td>João Felipe Ribeiro de Melo</td>
+        <td>2315045</td>
+    </tr>
+    <tr>
+        <td>Bianca Oriá Leite</td>
+        <td>2320323</td>
+    </tr>
+    <tr>
+        <td>Lorenna Aguiar Nunes</td>
+        <td>2315026</td>
+    </tr>
+</table>
 
 # Objetivo
 
